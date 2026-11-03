@@ -1,0 +1,47 @@
+---
+import { systems, SWATCH } from '../content/systems';
+import CrossSection from './CrossSection.astro';
+---
+<section class="section on-ink systems pitched" id="systems" aria-labelledby="systems-title">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="kicker">Roof systems</p>
+      <h2 id="systems-title">Five commercial systems, explained layer by layer</h2>
+      <p class="lead">Every low-slope roof is a stack of layers doing different jobs. Choose a system to see how it is put together.</p>
+    </div>
+    <div class="explorer" data-tabs>
+      <div class="tablist" role="tablist" aria-label="Roof systems" hidden data-tablist>
+        {systems.map((s, i) => (
+          <button class="tab" role="tab" type="button" id={`tab-${s.id}`} aria-controls={`panel-${s.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{s.name}</button>
+        ))}
+      </div>
+      {systems.map((s) => (
+        <div class="tabpanel" role="tabpanel" id={`panel-${s.id}`} aria-labelledby={`tab-${s.id}`} tabindex="0" data-panel>
+          <div class="panel-grid">
+            <div class="panel-figure">
+              <div class="xsec-wrap" data-xsec>
+                <CrossSection system={s} />
+                <span class="xsec-tag" aria-hidden="true">Illustrative, not to scale</span>
+              </div>
+              <p class="xsec-disclaimer">Illustrative, not to scale. Actual assemblies vary by building, manufacturer and code requirements.</p>
+            </div>
+            <div class="panel-copy">
+              <h3>{s.name}</h3>
+              <p class="summary">{s.summary}</p>
+              <p class="panel-fit"><strong>Often a fit for:</strong> {s.fit}</p>
+              <ol class="layer-list" aria-label={`${s.name} layers, top to bottom`}>
+                {[...s.layers].map((l, i) => ({ l, i })).reverse().map(({ l, i }) => (
+                  <li><div class="layer-btn" data-layer-ref={i}>
+                    <span class="layer-swatch" style={`background:${SWATCH[l.tone]}`} aria-hidden="true"></span>
+                    <span class="layer-name">{l.name}</span>
+                    <span class="layer-note">{l.note}</span>
+                  </div></li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

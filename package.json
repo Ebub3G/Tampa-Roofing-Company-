@@ -1,0 +1,27 @@
+{
+  "name": "tampa-roofing-concept",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Design concept website for Tampa Roofing Company, Inc. Not the live company website.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "qa": "node scripts/qa.mjs",
+    "lighthouse": "node scripts/lighthouse.mjs"
+  },
+  "dependencies": {
+    "@fontsource/barlow": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@fontsource/source-serif-4": "^5.3.1",
+    "astro": "^5.18.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "axe-core": "^4.14.0",
+    "chrome-launcher": "^1.2.2",
+    "lighthouse": "^13.6.0",
+    "typescript": "^5.9.3"
+  }
+}

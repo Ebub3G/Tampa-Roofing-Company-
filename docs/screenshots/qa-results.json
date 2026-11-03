@@ -1,0 +1,150 @@
+{
+  "base": "http://127.0.0.1:45983/",
+  "checks": [
+    {
+      "name": "no horizontal overflow @390",
+      "pass": true,
+      "detail": "0px"
+    },
+    {
+      "name": "no horizontal overflow @768",
+      "pass": true,
+      "detail": "0px"
+    },
+    {
+      "name": "no horizontal overflow @1440",
+      "pass": true,
+      "detail": "0px"
+    },
+    {
+      "name": "no horizontal overflow @1920",
+      "pass": true,
+      "detail": "0px"
+    },
+    {
+      "name": "fast scroll: no blank sections in view",
+      "pass": true,
+      "detail": "min opacity 1"
+    },
+    {
+      "name": "jump to bottom and back: all sections revealed",
+      "pass": true,
+      "detail": "0 hidden"
+    },
+    {
+      "name": "axe @390: zero violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "axe @390: zero color-contrast failures",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "axe @1440: zero violations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "axe @1440: zero color-contrast failures",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "first Tab focuses skip link",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu opens with focus inside and body scroll locked",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "focus stays trapped in menu",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "menu targets >= 48px",
+      "pass": true,
+      "detail": "48,56,56,56,56,56,51,51"
+    },
+    {
+      "name": "Escape closes menu and returns focus",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ArrowRight moves to next tab and selects it",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "End selects last tab",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sticky bar: Call + Request a proposal on one line",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "forms are not prefilled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "empty submit shows errors and focuses first invalid field",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "form success keeps form height",
+      "pass": true,
+      "detail": "613 / 613 -> 613"
+    },
+    {
+      "name": "reduced motion: all content visible immediately",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no-JS: all five system panels readable",
+      "pass": true,
+      "detail": "5 visible"
+    },
+    {
+      "name": "JSON-LD phone/address match visible NAP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "FAQPage JSON-LD matches visible FAQ",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "exactly one H1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no forbidden claims in visible text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "CTA labels limited to the approved set",
+      "pass": true,
+      "detail": "Request a proposal | Call (813) 238-6436 | Call"
+    },
+    {
+      "name": "meta robots noindex,nofollow",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+---
+import { process } from '../content/process';
+---
+<section class="section" id="process" aria-labelledby="process-title">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="kicker">How a project works</p>
+      <h2 id="process-title">From first walk-through to the maintenance plan</h2>
+      <p class="lead">The same five steps on a warehouse, a church or a condominium, scaled to the building.</p>
+    </div>
+    <ol class="steps">
+      {process.map((s, i) => (
+        <li class="step" data-reveal>
+          <span class="step-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <div><h3>{s.title}</h3><p>{s.body}</p></div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

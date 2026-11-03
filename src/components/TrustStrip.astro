@@ -1,0 +1,16 @@
+---
+import { company } from '../config';
+const items = [
+  { big: `Since ${company.foundingYear}`, small: 'Same Tampa address' },
+  { big: 'Four generations', small: 'Family-owned' },
+  { big: 'CPRC-certified', small: 'President and Vice President' },
+  { big: `License ${company.license.number}`, small: 'State Certified Roofing Contractor' },
+];
+---
+<section class="trust" aria-label="At a glance">
+  <div class="wrap">
+    <ul class="trust-list">
+      {items.map((i) => <li class="trust-item"><span class="trust-big">{i.big}</span><span class="trust-small">{i.small}</span></li>)}
+    </ul>
+  </div>
+</section>

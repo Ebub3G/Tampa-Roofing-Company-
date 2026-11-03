@@ -1,0 +1,44 @@
+---
+import { company, nav, site } from '../config';
+import BrandMark from './BrandMark.astro';
+import ExtLink from './ExtLink.astro';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom:1rem">
+          <BrandMark class="brand-mark" />
+          <span class="brand-text"><span class="brand-name">Tampa Roofing</span><span class="brand-sub">Company, Inc. · Since {company.foundingYear}</span></span>
+        </div>
+        <p>Fourth-generation, family-owned commercial roofing contractor.</p>
+      </div>
+      <div>
+        <h2>Office</h2>
+        <address>
+          {company.legalName}<br />
+          {company.address.street}<br />
+          {company.address.city}, {company.address.region} {company.address.postalCode}<br />
+          <a href={company.phone.href}>{company.phone.display}</a>
+        </address>
+      </div>
+      <div>
+        <h2>On this page</h2>
+        <ul class="footer-nav">{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul class="footer-nav">
+          <li><a href="#proposal">Request a proposal</a></li>
+          <li><ExtLink href={company.careersUrl}>Careers: employment application (PDF)</ExtLink></li>
+        </ul>
+        <p style="margin-top:1rem">{company.license.label}</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© {year} {company.legalName}</p>
+      <p class="demo-line">{site.demoNote}</p>
+    </div>
+  </div>
+</footer>

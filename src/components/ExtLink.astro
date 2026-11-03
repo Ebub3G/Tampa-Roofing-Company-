@@ -1,0 +1,6 @@
+---
+// External link that opens in a new tab and says so to screen readers.
+interface Props { href: string; class?: string }
+const { href, class: cls } = Astro.props;
+---
+<a href={href} class={cls} target="_blank" rel="noopener"><slot /><span class="visually-hidden"> (opens in new tab)</span></a>

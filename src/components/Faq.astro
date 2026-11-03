@@ -1,0 +1,21 @@
+---
+import { faq } from '../content/faq';
+import Icon from './Icon.astro';
+---
+<section class="section on-mist" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq-grid">
+    <div class="section-head" data-reveal>
+      <p class="kicker">Questions</p>
+      <h2 id="faq-title">What to ask any roofing contractor, answered</h2>
+      <p class="lead">Licensing, permits, warranties and the repair-or-replace decision, in plain language.</p>
+    </div>
+    <div class="faq-list">
+      {faq.map((f, i) => (
+        <details class="faq-item" open={i === 0}>
+          <summary>{f.q}<Icon name="plus" /></summary>
+          <div class="answer"><p>{f.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

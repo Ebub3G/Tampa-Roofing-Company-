@@ -1,0 +1,50 @@
+---
+import { cta, formNeeds } from '../config';
+import Icon from './Icon.astro';
+interface Props { id: string; headingLevel?: 'h2' | 'h3'; title?: string; sub?: string }
+const { id, headingLevel = 'h2', title = cta.primary, sub = 'Tell us about the building. We reply by phone or email.' } = Astro.props;
+const H = headingLevel;
+---
+<div class="form-card">
+  <div class="form-stack" data-form-stack>
+    <div class="form-main">
+      <div class="form-head">
+        <H class="form-title" id={`${id}-title`}>{title}</H>
+        <p class="form-sub">{sub}</p>
+      </div>
+      <form class="proposal-form" novalidate aria-labelledby={`${id}-title`} data-proposal-form>
+        <div class="field">
+          <label for={`${id}-name`}>Name</label>
+          <input id={`${id}-name`} name="name" type="text" autocomplete="name" required aria-describedby={`${id}-name-err`} />
+          <p class="field-error" id={`${id}-name-err`} aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for={`${id}-company`}>Company or property <span class="hint">(optional)</span></label>
+          <input id={`${id}-company`} name="company" type="text" autocomplete="organization" />
+        </div>
+        <div class="field">
+          <label for={`${id}-contact`}>Phone or email</label>
+          <input id={`${id}-contact`} name="contact" type="text" autocomplete="tel" inputmode="text" required aria-describedby={`${id}-contact-err`} />
+          <p class="field-error" id={`${id}-contact-err`} aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for={`${id}-need`}>What do you need?</label>
+          <select id={`${id}-need`} name="need" required aria-describedby={`${id}-need-err`}>
+            <option value="">Choose one</option>
+            {formNeeds.map((n) => <option>{n}</option>)}
+          </select>
+          <p class="field-error" id={`${id}-need-err`} aria-live="polite"></p>
+        </div>
+        <button class="btn btn-ink" type="submit">{cta.primary}</button>
+        <p class="form-note">Demo only. This concept form does not send anything.</p>
+      </form>
+    </div>
+    <div class="form-success" role="status" aria-live="polite" tabindex="-1" data-form-success>
+      <Icon name="check" />
+      <h3>Request received</h3>
+      <p data-success-text>In the live site, this request would go to the office and someone would follow up by phone or email.</p>
+      <p class="form-note">Demo only. Nothing was sent.</p>
+      <button class="form-reset" type="button" data-form-reset>Start a new request</button>
+    </div>
+  </div>
+</div>

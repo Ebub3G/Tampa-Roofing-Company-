@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+import { site, company } from '../config';
+import { buildJsonLd } from '../lib/jsonld';
+import Fonts from '../components/Fonts.astro';
+const canonical = new URL('/', site.url).href;
+const jsonld = JSON.stringify(buildJsonLd());
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.title}</title>
+    <meta name="description" content={site.description} />
+    {site.isDemo && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+    <Fonts />
+    <meta name="theme-color" content="#0C1722" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={site.title} />
+    <meta property="og:description" content={site.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={company.legalName} />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script type="application/ld+json" set:html={jsonld} />
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <slot />
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+---
+import { company, cta } from '../config';
+import Icon from './Icon.astro';
+---
+<div class="sticky-bar on-ink" aria-label="Quick actions" role="region">
+  <a class="btn btn-ghost sticky-call" href={company.phone.href} aria-label={cta.call}><Icon name="phone" />{cta.callShort}</a>
+  <a class="btn btn-primary sticky-cta" href="#proposal">{cta.primary}</a>
+</div>

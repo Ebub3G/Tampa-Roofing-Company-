@@ -1,0 +1,40 @@
+---
+import type { RoofSystem } from '../content/systems';
+interface Props { system: RoofSystem }
+const { system } = Astro.props;
+const p = `${system.id}-`;
+const H: Record<string, number> = { deck: 52, frame: 50, insulation: 66, board: 22, ply: 16, membrane: 20, surface: 22, metal: 28 };
+const FILL: Record<string, string> = {
+  deck: `url(#${p}hatch)`, frame: `url(#${p}hatch)`, insulation: `url(#${p}foam)`, board: '#c9d1d7',
+  ply: '#8c6f3e', membrane: '#B38A3C', surface: `url(#${p}gravel)`, metal: `url(#${p}ribs)`,
+};
+const left = 36, right = 616, base = 236, step = 92, slant = 22;
+let y = base;
+const shapes = system.layers.map((l, i) => {
+  const h = H[l.tone];
+  const x = left + i * step;
+  const top = y - h;
+  const pts = `${x + slant},${top} ${right},${top} ${right},${y} ${x},${y}`;
+  y = top;
+  return { pts, fill: FILL[l.tone], i };
+});
+const label = `Illustrative cross-section of a ${system.name} roof, from the deck up: ${system.layers.map((l) => l.name).join(', ')}.`;
+---
+<svg class="xsec" viewBox="0 0 652 256" role="img" aria-label={label}>
+  <defs>
+    <pattern id={`${p}hatch`} width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="10" height="10" fill="#4e5f6c" /><path d="M0 0V10" stroke="#6b7c89" stroke-width="3" />
+    </pattern>
+    <pattern id={`${p}foam`} width="24" height="12" patternUnits="userSpaceOnUse">
+      <rect width="24" height="12" fill="#e4dcc8" /><path d="M0 9 Q6 3 12 9 T24 9" fill="none" stroke="#c7bb9c" stroke-width="1.2" />
+    </pattern>
+    <pattern id={`${p}gravel`} width="14" height="10" patternUnits="userSpaceOnUse">
+      <rect width="14" height="10" fill="#7d8b96" /><circle cx="3" cy="3" r="1.8" fill="#b9c4cc" /><circle cx="10" cy="7" r="1.5" fill="#a3afb8" />
+    </pattern>
+    <pattern id={`${p}ribs`} width="22" height="24" patternUnits="userSpaceOnUse">
+      <rect width="22" height="24" fill="#a9bccb" /><rect x="0" width="4" height="24" fill="#d6e1ea" />
+    </pattern>
+  </defs>
+  {shapes.map((s) => <polygon class="layer" data-layer={s.i} points={s.pts} fill={s.fill} stroke="#0C1722" stroke-width="1.5" />)}
+  <path d={`M${left - 10} ${base + 1}H${right + 10}`} stroke="#3c5568" stroke-width="2" />
+</svg>
