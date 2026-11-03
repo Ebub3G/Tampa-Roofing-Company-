@@ -1,0 +1,24 @@
+---
+import { company, fullAddress, mapUrl } from '../config';
+import ProposalForm from './ProposalForm.astro';
+import ExtLink from './ExtLink.astro';
+---
+<section class="section on-ink" id="proposal" aria-labelledby="contact-title">
+  <div class="wrap contact-grid">
+    <div data-reveal>
+      <p class="kicker">Request a proposal</p>
+      <h2 id="contact-title">Tell us about the building</h2>
+      <p class="lead">Re-roof estimates are free. Send a few details or call the office, and we will arrange a time to look at the roof.</p>
+      <ul class="contact-list">
+        <li><span class="contact-label">Phone</span><span class="contact-value"><a href={company.phone.href}>{company.phone.display}</a></span></li>
+        <li>
+          <span class="contact-label">Office</span>
+          <span class="contact-value">{company.address.street}<br />{company.address.city}, {company.address.region} {company.address.postalCode}</span>
+          <span class="contact-extra"><ExtLink href={mapUrl}>Open in Google Maps</ExtLink></span>
+        </li>
+        <li><span class="contact-label">License</span><span class="contact-value">{company.license.number}</span><span class="contact-extra">{company.license.label}</span></li>
+      </ul>
+    </div>
+    <ProposalForm id="contact-form" headingLevel="h3" title="Proposal request" sub="Four quick fields. We follow up by phone or email." />
+  </div>
+</section>

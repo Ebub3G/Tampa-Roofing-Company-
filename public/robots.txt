@@ -1,0 +1,6 @@
+# Crawlers may read the page (so audit tools work). Indexing is blocked by the
+# meta robots tag and the X-Robots-Tag header until launch. See SEO.md.
+User-agent: *
+Allow: /
+
+Sitemap: https://tamparoofing.com/sitemap.xml

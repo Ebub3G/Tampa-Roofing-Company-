@@ -1,0 +1,34 @@
+---
+import { company, cta, references } from '../config';
+import Icon from './Icon.astro';
+import ProposalForm from './ProposalForm.astro';
+import RoofDrawing from './RoofDrawing.astro';
+import ExtLink from './ExtLink.astro';
+const quoted = references.find((r) => r.quote);
+const named = references.filter((r) => r.context !== 'Bonding Company').slice(0, 2).map((r) => r.org);
+---
+<section class="hero on-ink" aria-labelledby="hero-title">
+  <RoofDrawing />
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">{company.address.street}, {company.address.city} · License {company.license.number}</p>
+      <h1 id="hero-title">Commercial roofing in Tampa since {company.foundingYear}</h1>
+      <p class="hero-lead">Built-up, modified, cold applied, TPO and metal roofs for warehouses, offices, shopping centers and the boards that look after them. Four generations, one family, the same address.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#proposal">{cta.primary}</a>
+        <a class="btn btn-ghost" href={company.phone.href}><Icon name="phone" />{cta.call}</a>
+      </div>
+      {quoted ? (
+        <figure class="hero-proof">
+          <blockquote><p>{quoted.quote}</p></blockquote>
+          <figcaption><p>{quoted.signer}, {quoted.org} · <ExtLink href={quoted.pdf}>View original letter (PDF)</ExtLink></p></figcaption>
+        </figure>
+      ) : (
+        <div class="hero-proof">
+          <p>Reference letters on file from <span class="hero-proof-orgs">{named.join(' and ')}</span>, among others. <a href="#references">Read the references</a></p>
+        </div>
+      )}
+    </div>
+    <ProposalForm id="hero-form" />
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+// Self-hosted fonts (from @fontsource packages), Latin subset only.
+// font-display: optional + preload means the page never shifts when fonts
+// arrive: if a font is late on a slow first visit, the fallback stays.
+import b400 from '@fontsource/barlow/files/barlow-latin-400-normal.woff2?url';
+import b500 from '@fontsource/barlow/files/barlow-latin-500-normal.woff2?url';
+import b600 from '@fontsource/barlow/files/barlow-latin-600-normal.woff2?url';
+import c600 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-600-normal.woff2?url';
+import c700 from '@fontsource/barlow-condensed/files/barlow-condensed-latin-700-normal.woff2?url';
+import s400i from '@fontsource/source-serif-4/files/source-serif-4-latin-400-italic.woff2?url';
+const faces = [
+  ['Barlow', b400, 400, 'normal'], ['Barlow', b500, 500, 'normal'], ['Barlow', b600, 600, 'normal'],
+  ['Barlow Condensed', c600, 600, 'normal'], ['Barlow Condensed', c700, 700, 'normal'],
+  ['Source Serif 4', s400i, 400, 'italic'],
+] as const;
+const css = faces.map(([f, u, w, st]) => `@font-face{font-family:'${f}';src:url(${u}) format('woff2');font-weight:${w};font-style:${st};font-display:optional;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}`).join('');
+const preload = [b400, c700, c600, b600];
+---
+{preload.map((u) => <link rel="preload" href={u} as="font" type="font/woff2" crossorigin />)}
+<style is:inline set:html={css}></style>

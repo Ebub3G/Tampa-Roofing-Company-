@@ -1,0 +1,44 @@
+---
+import { policies, inspections } from '../config';
+import Icon from './Icon.astro';
+---
+<section class="section on-mist" id="maintenance" aria-labelledby="maint-title">
+  <div class="wrap maint-grid">
+    <div>
+      <div class="section-head" data-reveal>
+        <p class="kicker">Maintenance and inspections</p>
+        <h2 id="maint-title">A roof budget you can plan, not a leak you react to</h2>
+        <p class="lead">Many roof problems start small: a split seam, a clogged drain, a loose flashing. A maintenance agreement puts the roof on a schedule so those get caught and fixed while they are still small, and your capital plan holds.</p>
+      </div>
+      <ul class="maint-points">
+        <li data-reveal>
+          <Icon name="calendar" />
+          <div><h3>Scheduled, not reactive</h3><p>Regular inspections on an agreed schedule, with findings in writing, so repairs land in this year’s budget instead of arriving as a surprise.</p></div>
+        </li>
+        <li data-reveal>
+          <Icon name="shield" />
+          <div><h3>Protects the warranty</h3><p>Many long-term commercial warranties expect documented upkeep. We specialize in long-term commercial warranties and maintenance agreements.</p></div>
+        </li>
+        <li data-reveal>
+          <Icon name="clipboard" />
+          <div><h3>A record your board can read</h3><p>Condition notes and recommendations a property manager can hand straight to an owner or board.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div class="policy-card" data-reveal>
+        <h3>Our repair policy, stated plainly</h3>
+        <dl>
+          <div class="policy-row"><dt>Re-roofs</dt><dd>{policies.freeEstimates}</dd></div>
+          <div class="policy-row"><dt>Repairs</dt><dd><span class="policy-figure">${policies.repairMinimum}</span> minimum. Repair estimates are not free.</dd></div>
+          <div class="policy-row"><dt>If it can’t be repaired</dt><dd>{policies.repairMinimumNote}</dd></div>
+        </dl>
+      </div>
+      <div class="inspection-card on-ink" data-reveal>
+        <h3>Detailed inspections through {inspections.partner}</h3>
+        <p>Our {inspections.relation}, {inspections.partner}, has {inspections.team} who can inspect a roof and recommend maintenance or replacement.</p>
+        <p><strong>{inspections.costNote}</strong></p>
+      </div>
+    </div>
+  </div>
+</section>

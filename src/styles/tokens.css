@@ -1,0 +1,60 @@
+/* Design tokens: "Engineered heritage". See docs/STRATEGY.md section 5. */
+:root {
+  /* Brand palette */
+  --ink: #0c1722;
+  --ink-deep: #08111a;
+  --steel: #2e4a5e;
+  --mist: #eef1f3;
+  --paper: #fafaf8;
+  --brass: #b38a3c;
+
+  /* Derived (all checked with axe-core; see README) */
+  --ink-line: rgb(238 241 243 / 0.16);  /* rules on ink */
+  --on-ink: #fafaf8;                     /* text on ink */
+  --on-ink-muted: #b9c6d1;               /* secondary text on ink, 9.6:1 */
+  --steel-line: rgb(46 74 94 / 0.22);    /* rules on light */
+  --brass-soft: rgb(179 138 60 / 0.18);
+  --focus: #b38a3c;
+  --focus-on-light: #0c1722;
+  --error: #9b2c1f;                      /* error text on paper, 6.9:1 */
+
+  /* Type */
+  --font-head: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  --font-quote: 'Source Serif 4', Georgia, serif;
+
+  --fs-micro: 0.8125rem;   /* 13px labels and microcopy */
+  --fs-small: 0.9375rem;   /* 15px */
+  --fs-body: 1.0625rem;    /* 17px */
+  --fs-lead: clamp(1.125rem, 1rem + 0.5vw, 1.3125rem);
+  --fs-h3: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);
+  --fs-h2: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+  --fs-h1: clamp(2.75rem, 1.9rem + 4vw, 5.25rem);
+  --fs-numeral: clamp(3.5rem, 2.4rem + 5vw, 6.5rem);
+
+  /* Space (8px base) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --section-y: clamp(4rem, 3rem + 5vw, 7.5rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --max: 76rem;
+
+  /* Shape */
+  --radius: 3px;
+  --radius-card: 4px;
+  --pitch-run: clamp(6rem, 4rem + 8vw, 12rem);  /* 6:12 pitch: rise = run / 2 */
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-reveal: 350ms;
+  --dur-ui: 180ms;
+
+  --header-h: 4.25rem;
+}

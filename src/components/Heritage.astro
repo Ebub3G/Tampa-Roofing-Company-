@@ -1,0 +1,28 @@
+---
+import { company, history, fullAddress } from '../config';
+---
+<section class="section" id="heritage" aria-labelledby="heritage-title">
+  <div class="wrap heritage-grid">
+    <div class="section-head" data-reveal>
+      <p class="kicker">Since {company.foundingYear}</p>
+      <h2 id="heritage-title">One family, one address, four generations</h2>
+      <p class="lead">Tampa Roofing Company has worked from East Ellicott Street since the business began. Four generations later, the same family still runs it.</p>
+    </div>
+    <div class="heritage-aside" data-reveal>
+      <div class="address-plate">
+        <span class="plate-label">Same location since {company.foundingYear}</span>
+        <span class="plate-value">{company.address.street}<br />{company.address.city}, {company.address.region} {company.address.postalCode}</span>
+      </div>
+      <p>Long memory matters on a commercial roof. Warranties run for years, maintenance agreements run longer, and the company that installed the roof is still here to answer for it.</p>
+    </div>
+    <ol class="timeline heritage-wide" aria-label="Company timeline">
+      {history.map((h) => (
+        <li class="tl-item" data-reveal>
+          <p class="tl-year">{h.year}</p>
+          <p class="tl-title">{h.title}</p>
+          <p class="tl-caption">{h.caption}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+---
+// Axonometric line drawing of a low-slope commercial roof. Decorative and
+// illustrative, generated from simple geometry so it stays crisp at any size.
+const c = Math.cos(Math.PI / 6), s = 0.5;
+const O = { x: 560, y: 70 };
+const iso = (x: number, y: number, z = 0) => [O.x + (x - y) * c, O.y + (x + y) * s - z];
+const pt = (p: number[]) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`;
+const poly = (pts: number[][]) => pts.map(pt).join(' ');
+
+const W = 520, D = 330, H = 120, P = 14; // footprint, wall height, parapet
+const roof = poly([iso(0, 0, H), iso(W, 0, H), iso(W, D, H), iso(0, D, H)]);
+const inner = poly([iso(10, 10, H - P), iso(W - 10, 10, H - P), iso(W - 10, D - 10, H - P), iso(10, D - 10, H - P)]);
+const wallR = poly([iso(W, 0, H), iso(W, D, H), iso(W, D, 0), iso(W, 0, 0)]);
+const wallF = poly([iso(0, D, H), iso(W, D, H), iso(W, D, 0), iso(0, D, 0)]);
+
+// membrane seams across the field
+const seams: string[] = [];
+for (let x = 50; x < W - 10; x += 40) seams.push(`M${pt(iso(x, 10, H - P))}L${pt(iso(x, D - 10, H - P))}`);
+
+// rooftop units (boxes)
+const box = (x: number, y: number, w: number, d: number, h: number) => {
+  const z = H - P;
+  return {
+    top: poly([iso(x, y, z + h), iso(x + w, y, z + h), iso(x + w, y + d, z + h), iso(x, y + d, z + h)]),
+    r: poly([iso(x + w, y, z + h), iso(x + w, y + d, z + h), iso(x + w, y + d, z), iso(x + w, y, z)]),
+    f: poly([iso(x, y + d, z + h), iso(x + w, y + d, z + h), iso(x + w, y + d, z), iso(x, y + d, z)]),
+  };
+};
+const units = [box(90, 60, 70, 50, 34), box(200, 60, 70, 50, 34), box(330, 190, 90, 60, 40), box(80, 220, 40, 40, 22)];
+const drains = [[160, 160], [380, 110], [260, 270]].map(([x, y]) => iso(x, y, H - P));
+
+// dimension line along the right wall
+const d0 = iso(W + 30, 0, 0), d1 = iso(W + 30, D, 0);
+const t0a = iso(W + 22, 0, 0), t0b = iso(W + 38, 0, 0), t1a = iso(W + 22, D, 0), t1b = iso(W + 38, D, 0);
+// windows on front wall
+const windows: string[] = [];
+for (let x = 30; x < W - 30; x += 54) windows.push(poly([iso(x, D, 78), iso(x + 32, D, 78), iso(x + 32, D, 40), iso(x, D, 40)]));
+---
+<svg class="hero-drawing" viewBox="0 0 1100 720" aria-hidden="true" focusable="false" fill="none" stroke-linejoin="round">
+  <g stroke="#8fa6b8" stroke-width="1.2">
+    <polygon points={wallF} fill="#0f1d2a" />
+    <polygon points={wallR} fill="#122333" />
+    <polygon points={roof} fill="#132536" />
+    <polygon points={inner} fill="#162b3e" />
+    <path d={seams.join('')} stroke-width="0.8" opacity="0.6" />
+    {windows.map((w) => <polygon points={w} stroke-width="0.9" opacity="0.7" />)}
+    {units.map((u) => (<g><polygon points={u.f} fill="#1b3247" /><polygon points={u.r} fill="#1f3a52" /><polygon points={u.top} fill="#25445f" /></g>))}
+  </g>
+  <g fill="#B38A3C">
+    {drains.map((d) => <ellipse cx={d[0]} cy={d[1]} rx="7" ry="4" />)}
+  </g>
+  <g stroke="#B38A3C" stroke-width="1.4">
+    <path d={`M${pt(d0)}L${pt(d1)}M${pt(t0a)}L${pt(t0b)}M${pt(t1a)}L${pt(t1b)}`} />
+  </g>
+</svg>

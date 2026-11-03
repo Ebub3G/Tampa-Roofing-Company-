@@ -1,0 +1,49 @@
+---
+import { company, cta, nav } from '../config';
+import Icon from './Icon.astro';
+import BrandMark from './BrandMark.astro';
+---
+<header class="site-header on-ink">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <BrandMark class="brand-mark" />
+      <span class="brand-text">
+        <span class="brand-name">Tampa Roofing</span>
+        <span class="brand-sub">Company, Inc. · Since {company.foundingYear}</span>
+      </span>
+    </a>
+    <nav class="nav-desktop" aria-label="Main">
+      {nav.map((n) => <a href={n.href}>{n.label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <a class="icon-btn header-phone" href={company.phone.href} aria-label={cta.call}>
+        <Icon name="phone" />
+        <span class="header-phone-text" aria-hidden="true">{company.phone.display}</span>
+      </a>
+      <a class="btn btn-primary header-cta" href="#proposal">{cta.primary}</a>
+      <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
+        <Icon name="menu" /><span class="visually-hidden">Open menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="menu-scrim" data-menu-close aria-hidden="true"></div>
+<div class="menu-panel" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="menu-top">
+    <span class="menu-title">Menu</span>
+    <button class="icon-btn" type="button" data-menu-close>
+      <Icon name="close" /><span class="visually-hidden">Close menu</span>
+    </button>
+  </div>
+  <nav aria-label="Mobile">
+    <ul class="menu-list">
+      {nav.map((n) => <li><a href={n.href} data-menu-link>{n.label}</a></li>)}
+    </ul>
+  </nav>
+  <div class="menu-actions">
+    <a class="btn btn-primary" href="#proposal" data-menu-link>{cta.primary}</a>
+    <a class="btn btn-ghost" href={company.phone.href}><Icon name="phone" />{cta.call}</a>
+  </div>
+  <p class="menu-meta">{company.license.label}</p>
+</div>

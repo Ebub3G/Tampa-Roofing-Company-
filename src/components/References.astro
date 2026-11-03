@@ -1,0 +1,36 @@
+---
+import { references } from '../config';
+import Icon from './Icon.astro';
+import ExtLink from './ExtLink.astro';
+// Featured card: the first quoted institutional letter, else the City of Tampa.
+const ordered = [...references].sort((a, b) => Number(!!b.quote) - Number(!!a.quote));
+const shown = ordered.filter((r) => r.quote).length ? ordered.slice(0, 5) : references;
+---
+<section class="section on-mist" id="references" aria-labelledby="refs-title">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <p class="kicker">Trusted by</p>
+      <h2 id="refs-title">Reference letters from the people who hired us</h2>
+      <p class="lead">Municipal, nonprofit, retail and community clients, plus our bonding company. Read each letter in full, as it was written.</p>
+    </div>
+    <ul class={`refs ${shown.some((r) => r.quote) ? 'refs-quoted' : 'refs-plain'}`} role="list">
+      {shown.map((r, i) => (
+        <li class={`ref${i === 0 ? ' ref-feature on-ink' : ''}`} data-reveal>
+          <span class="ref-context">{r.context}</span>
+          {r.quote ? (
+            <figure>
+              <blockquote><p>{r.quote}</p></blockquote>
+              <figcaption>{r.signer}, {r.org}</figcaption>
+            </figure>
+          ) : (
+            <>
+              <h3 class="ref-org">{r.org}</h3>
+              <p class="ref-status">Reference letter on file</p>
+            </>
+          )}
+          <ExtLink class="ref-link" href={r.pdf}><Icon name="doc" />View original letter (PDF)</ExtLink>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
